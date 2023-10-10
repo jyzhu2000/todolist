@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs") %>
+
+<div class="main">
+    <h1><%= title %></h1>
+
+    <div id="list">
+        <% if (locals.items) { %> 
+            <% items.forEach((item, i) => { %>
+                <% let id = `item${i}`; %>
+                <div class="listItem">
+                    <input type="checkbox" onclick="markChecked(event)" id=<%= id %> name=<%= item %>>
+                    <label for=<%= id %>><%= item %></label>
+                </div>
+            <% }); %>
+        <% } %>
+
+        <form action="/submit" method="POST">
+            <div class="listItem">
+                <input type="text" name="item" placeholder="New Item">
+                <input type="submit" value="+">
+            </div>
+        </form>
+    </div>
+
+<script src="index.js"></script>
+
+<%- include("partials/footer.ejs") %>
+</div>
